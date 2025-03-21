@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .total {
+            font-weight: bold;
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Grocery List</h2>
+
+    <table id="grocery-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price (Rs)</th>
+            </tr>
+        </thead>
+        <tbody id="grocery-body">
+            <tr class="item">
+                <td>Apples</td>
+                <td class="prices">2.50</td>
+            </tr>
+            <tr class="item">
+                <td>Milk</td>
+                <td class="prices">1.75</td>
+            </tr>
+            <tr class="item">
+                <td>Bread</td>
+                <td class="prices">3.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function calculateTotal() {
+            const priceElements = document.querySelectorAll(".prices");
+            let total = 0; 
+           
+            priceElements.forEach(price => {
+                
+                total += parseFloat(price.textContent);
+            });
+
+            // Remove old total row if exists
+            const oldTotalRow = document.getElementById("total-row");
+            if (oldTotalRow) {
+                oldTotalRow.remove();
+            }
+
+            // Create new total row
+            const totalRow = document.createElement("tr");
+            totalRow.id = "total-row";
+            totalRow.innerHTML = `<td colspan="2" class="total">Total Price: Rs${total.toFixed(2)}</td>`;
+
+            document.getElementById("grocery-body").appendChild(totalRow);
+        }
+
+        // Initial calculation
+        calculateTotal();
+    </script>
+
+</body>
+</html>

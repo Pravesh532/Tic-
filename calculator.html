@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style> 
+        #container {
+            justify-content: space-between;
+            border: 2px solid black;
+            width: 300px;
+            height: 300px; 
+            margin: auto;
+            padding: 10px;
+            text-align: center;
+        }
+       
+        button {
+            background-color: gray;
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>  
+    <div id="container"> 
+        <div id="input">
+            <label for="input1">Input 1:</label>
+            <input type="number" id="input1"> <br>
+            <label for="input2">Input 2:</label>
+            <input type="number" id="input2"> 
+        </div>
+        <div id="symbols">
+            <button id="add">+</button> 
+            <button id="subtract">-</button>
+            <button id="modulo">%</button>
+            <button id="divide">/</button> 
+        </div> 
+        <h1 id="result">Result:</h1>
+    </div>
+
+    <script>
+        function Add() {
+            let num1 = parseFloat(document.getElementById("input1").value);
+            let num2 = parseFloat(document.getElementById("input2").value);
+            document.getElementById("result").innerText = `Result: ${num1 + num2}`;
+        }
+
+        function Subtract() {
+            let num1 = parseFloat(document.getElementById("input1").value);
+            let num2 = parseFloat(document.getElementById("input2").value);
+            document.getElementById("result").innerText = `Result: ${num1 - num2}`;
+        }
+
+        function Modulo() {
+            let num1 = parseFloat(document.getElementById("input1").value);
+            let num2 = parseFloat(document.getElementById("input2").value);
+            document.getElementById("result").innerText = `Result: ${num1 % num2}`;
+        }
+
+        function Divide() {
+            let num1 = parseFloat(document.getElementById("input1").value);
+            let num2 = parseFloat(document.getElementById("input2").value);
+            if (num2 === 0) {
+                document.getElementById("result").innerText = "Error: Division by zero!";
+            } else {
+                document.getElementById("result").innerText = `Result: ${num1 / num2}`;
+            }
+        }
+
+        document.getElementById("add").addEventListener("click", Add);
+        document.getElementById("subtract").addEventListener("click", Subtract);
+        document.getElementById("modulo").addEventListener("click", Modulo);
+        document.getElementById("divide").addEventListener("click", Divide);
+    </script>
+</body>
+</html>

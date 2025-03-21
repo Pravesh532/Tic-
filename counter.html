@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with Red Alert</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .counter-box {
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid white;
+            width: 300px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+        .count {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+            display: none; /* Pehle hidden hoga */
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border: 1px solid white;
+            background-color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Counter using HTML</h1>
+    <div class="counter-box">
+        <p>Your Current Count is: <span id="count" class="count">0</span></p>
+        <p id="errorMessage" class="error">Error: Cannot go below 0</p>
+        <button onclick="decrement()">Decrement</button>
+        <button onclick="increment()">Increment</button>
+        <button id="clearBtn" onclick="clearCounter()" style="display: none;">Clear</button>
+    </div>
+
+    <script>
+        let count = 0;
+        const countElement = document.getElementById("count");
+        const errorMessage = document.getElementById("errorMessage");
+        const clearButton = document.getElementById("clearBtn");
+
+        function increment() {
+            count++;
+            updateCounter();
+        }
+
+        function decrement() {
+            if (count > 0) {
+                count--;
+                errorMessage.style.display = "none"; // Error hide ho jayega
+            } else {
+                errorMessage.style.display = "block"; // Error red color me show hoga
+            }
+            updateCounter();
+        }
+
+        function clearCounter() {
+            count = 0;
+            errorMessage.style.display = "none"; // Error hide karna
+            updateCounter();
+            clearButton.style.display = "none"; // Clear button bhi hide hoga
+        }
+
+        function updateCounter() {
+            countElement.textContent = count;
+            clearButton.style.display = count > 0 ? "inline-block" : "none"; // Agar count > 0 toh clear button dikhega
+        }
+    </script>
+
+</body>
+</html>
